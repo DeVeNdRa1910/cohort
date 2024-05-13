@@ -31,5 +31,6 @@ app.use(function(err, req, res, next){
 })
 // we have to put this middleware in th last it will shows 
 // if error give by server then all the project details are included into it prevent this we ive an error on the behalf of server.
+// provide a short and better error message to user
 
 app.listen(3000);
