@@ -2,7 +2,9 @@ const express = require("express")
 
 const app = express()
 
-app.use(express.json()) // this middleware call everywhere whenever request hits server but middleware wrote by us call only for those request where we want to call it.
+app.use(express.json()) // this middleware call everywhere whenever request hits server 
+
+//but middleware wrote by us that call only for those request where we want to call it.
 
 // we make a middleware wich we have to call on every route number of request
 var numberOfRequest = 0;

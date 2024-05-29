@@ -29,8 +29,8 @@ app.use(function(err, req, res, next){
         message: "Sorry something is wrong with our server"
     })
 })
-// we have to put this middleware in th last it will shows 
-// if error give by server then all the project details are included into it prevent this we ive an error on the behalf of server.
+// we have to put this middleware in the last it will shows 
+// if error give by server then all the project details are included into it prevent this we have an error on the behalf of server.
 // provide a short and better error message to user
 
 app.listen(3000);
