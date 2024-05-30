@@ -1,26 +1,42 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
+const mongoose = require("mongoose")
+
+//connect our Backend with MongoDB with the help of mongoose
+mongoose.connect("mongodb://localhost:27017/user_app")
+
+const User = mongoose.model("User", {
+    name: String,
+    username: String,
+    password: String
+})
 
 const app = express()
 const jwtPassword = "123456"
 app.use(express.json())
-const ALL_USERS = [
-    {
-        username: "devendra@gmail.com",
-        password: "asdfasdf",
-        name: "Devendra vishwakarma"
-    },
-    {
-        username: "divyanshi@gmail.com",
-        password: "asdfasdf",
-        name: "Divyanshi Jain"
-    },
-    {
-        username: "jahnvi@gmail.com",
-        password: "asdfasdf",
-        name: "Jahnvi Panday"
-    },
-]
+
+app.post('/signup',async function (req, res){
+    const username = req.body.username;
+    const password = req.body.password;
+    const name = req.body.name;
+
+    // first check from that data any other user exist or not in DB
+    const existingUser = await User.findOne({username: username})
+    //Here we assume not exist
+    if (existingUser) {
+        res.status(400).send("user with this email already exist")
+    } else {
+        const user = new User({
+            username,
+            password,
+            name
+        })
+        user.save()
+        return res.json({
+            msg: "user created successfully"
+        })
+    }
+})
 
 function userExist(username, password){
     // write login to return true or false if this user exist in ALL_USERS
