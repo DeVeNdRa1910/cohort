@@ -1,0 +1,58 @@
+JSON Web Token (JWT) ek compact aur URL-safe means hai information securely transmit karne ka as a JSON object. JWT ko zyada tar authentication aur data exchange ke liye use kiya jata hai. Ab main thoda detail mein samjhata hoon:
+
+JWT ka Structure
+JWT teen parts mein divided hota hai, aur yeh teen parts dot (.) se separated hote hain:
+
+Header
+Payload
+Signature
+1. Header
+Header typically do cheezon se bana hota hai:
+
+Type of the token, jo ki "JWT" hota hai.
+Signing algorithm jo use kiya gaya hai, jaise HMAC SHA256 ya RSA.
+Example:
+
+json
+Copy code
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+2. Payload
+Payload mein claims hoti hain. Claims information hoti hain jo token ke ander stored hoti hain. Yeh teen types ki claims hoti hain:
+
+Registered claims: yeh pre-defined claims hoti hain jaise iss (issuer), exp (expiration time), sub (subject), aur aud (audience).
+Public claims: yeh claims custom hote hain jo application ke according define kiye jate hain.
+Private claims: yeh application specific claims hoti hain jo clients aur server ke beech information exchange ke liye use hoti hain.
+Example:
+
+json
+Copy code
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}
+3. Signature
+Signature JWT ko secure banata hai. Signature ko generate karne ke liye, aapko encoded header, encoded payload, ek secret, aur signing algorithm chahiye.
+
+Example:
+
+plaintext
+Copy code
+HMACSHA256(
+  base64UrlEncode(header) + "." + base64UrlEncode(payload),
+  secret
+)
+Example JWT
+Agar aap header aur payload ko base64Url encode karein aur signature generate karein, to aapko ek JWT milega jo kuch aisa dikhai dega:
+
+Copy code
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+JWT ka Use
+Authentication: JWT ko zyada tar authentication ke liye use kiya jata hai. Jab user login karta hai, server JWT generate karta hai aur client ko send karta hai. Client har request ke sath yeh JWT bhejta hai, aur server JWT verify karke user ko authenticate karta hai.
+
+Information Exchange: JWT ko secure information exchange ke liye bhi use kiya jata hai kyunki ismein information digitally signed hoti hai aur ensure hota hai ki data tamper-proof hai.
+
+Yeh tha ek basic overview JSON Web Tokens ka. Agar aapko aur detail mein kuch padhna ya samajhna hai, to bataiye!
