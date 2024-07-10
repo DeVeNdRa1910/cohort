@@ -26,6 +26,5 @@ export const totalNotificationSelector = selector({
         const notificationCount = get(notificationAtom); // current value of notificationAtom
 
         return networkCount+jobdsCount+messageCount+notificationCount;
-
     }
 })
