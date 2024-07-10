@@ -1,7 +1,9 @@
 import { atom, selector } from "recoil";
 import axios from "axios";
+
 export const notifications = atom({
   key: "networkAtom",
+  // default value for an atome must be a synchrounus stuff or can be selector
   default: selector({
     key: "networkSelector",
     get: async () => {
@@ -11,7 +13,7 @@ export const notifications = atom({
       return resp.data;
     }
   })
-  //if you know default value come from async functions then bcz get function may or may not be async
+  //if you know default value of an atom come from async functions then bcz get function may or may not be async
 })
 
 

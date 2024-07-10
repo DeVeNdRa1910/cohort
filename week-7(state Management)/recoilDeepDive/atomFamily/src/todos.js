@@ -7,5 +7,9 @@ export const TODOS = [
     id: 2,
     title: "Go for lunch",
     description: " Eat food"
+  },{
+    id: 3,
+    title: "Go for Study",
+    description: " Learn Recoil"
   }
 ]
