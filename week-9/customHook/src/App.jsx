@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios';
-import copy from 'copy-to-clipboard';
 
 function App() {
 
@@ -16,11 +15,14 @@ function App() {
   // Now i want a hook that we give api link to it and it will return list of todos
 
   const serverLink = "https://sum-server.100xdevs.com/todos"
-  const todos = useTodos(serverLink);
+  
+  const {todos, loading} = useTodos(serverLink, 10);
+  // we want to refresh todo list in every n second
+
 
   return (
     <>
-      {
+      { loading ? <h1>Loading... </h1> :
         todos.map(todo => (<div key={todo.id}>
           <Todo todo={todo}/>
         </div>))
@@ -30,15 +32,31 @@ function App() {
 }
 
 //Todo Handler Hook
-function useTodos(server){
+function useTodos(server, n){
   const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(()=>{
+    const value = setInterval(() => {
+      axios.get(server)
+      .then(resp => {
+        setTodos(resp.data.todos);
+        setLoading(false)
+      })
+    }, n*1000);
+
+    //yadi n seconds tak kuchh nahi hua to ek bar to run hohi jayga 
     axios.get(server)
       .then(resp => {
         setTodos(resp.data.todos);
+        setLoading(false)
       })
-  }, [])
-  return todos
+
+    // here we return cleanup function to stop the previous intervel
+    return ()=>{
+      clearInterval(value);
+    }
+  }, [n])
+  return {todos, loading}
 }
 
 function Todo({todo}){
@@ -64,7 +82,7 @@ function useCounter(start, step){
     setCount(prev => prev-step)
   }
 
-  return [count, increament, decreament];
+  return {count, increament, decreament};
 
 }
 
