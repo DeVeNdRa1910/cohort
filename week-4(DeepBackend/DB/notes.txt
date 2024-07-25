@@ -1,3 +1,0 @@
-user dont have direct access of DB
-user intract with Backend and Backend intract with DB 
-

@@ -1,0 +1,38 @@
+let your input aspecting from user write zod schemas
+
+ZOD is input validation library that avoid checking by lots of ifElese
+
+-> email: String is look like email, password: atlest 8 latters , country: In or US write zod schema for this
+-this input look like 
+
+const zod = require("zod")
+zodSchema => zod.object({
+    email: zod.String(),
+    password: zod.String(),
+    country: zod.litral("IN").or(zod.litral("us)),
+    kidneys: zod.array(z.number())
+})
+response-> response = schema.safeParse(kidneys)
+
+
+
+
+-> If input is an array of number with atlest 1 input, return true else return false
+const z = require("zod")
+
+function validateInput () {
+    const schema = z.array(z.number()) // this like defining function
+
+    const resp = schema.safeParse(arr)  // calling function
+
+    console.log(resp)
+}
+
+validateInput([1,2,3,4,5,6,7])
+
+-> Now email look like String and password should have 8 latters
+
+const schema = z.object({
+    email: z.String().email(),
+    password: z.String().min(8) 
+})
