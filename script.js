@@ -44,6 +44,7 @@ app.post("/signup", async function (req, res) {
   }
 });
 
+
 /* async function userExist(username, password){
     // write login to return true or false if this user exist in ALL_USERS
     // const user = ALL_USERS.find(item => (item.username===username && item.password===password))
@@ -88,10 +89,10 @@ app.get("/users", async function (req, res) {
   const token = req.headers.authorization;
   const decode = jwt.verify(token, jwtPassword);
   const username = decode.username;
-  const ALL_USERS = await User.find();
-  console.log(ALL_USERS);
+  const USERS = await User.find();
+  console.log(USERS);
   res.json({
-    users: ALL_USERS.filter((value) => {
+    users: USERS.filter((value) => {
       if (value.username === username) {
         return false;
       } else return true;
