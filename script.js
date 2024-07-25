@@ -59,7 +59,7 @@ app.post('/signin', function(req, res){
     if(!userExist(username, password)){
         // if user not exist
         return res.status(403).json({
-            msg: "user doe not exist in DB"
+            msg: "user don't exist in DB"
         })
     }
 

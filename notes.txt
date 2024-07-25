@@ -7,9 +7,9 @@ Before we get into authentication Lets understand some jargon
     3. JSON web tokens(JWT)
     4. Local storage
 
-1. Hashing-> your credential are converted in to some rendom string then store in DB. Single input(your credential) give always same output(converted credential) and it one way that mean we cant go back
+1. Hashing-> your credential are converted in to some rendom string then store in DB. Single input(your credential) give always same output(converted credential) and it one way that mean we cant go back, cant go back
 
-2. Encrypt-> Encryption is same as Hashing only difference is while encrypting it will provide a key with the help of that key you can decrypt
+2. Encrypt-> Encryption is same as Hashing only difference is while encrypting it will provide a key with the help of that key you can decrypt, with the help of key we can go back
 
 jab hamm FB par kuchh upload karte hai to vo pehele encrypt hota hai then DB me store hota hai when hame vo data wapas chahiye hoga so hame ek key mili hogi encryption ke time pr vo key dena hota hai then we can access our data and ye sab backend me hota h 
 
