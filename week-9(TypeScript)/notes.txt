@@ -1,0 +1,18 @@
+ts code runs never on Browser . Browser can only understand javascript
+  -js is runtime language
+  -ts is something that compiles down to javascript
+  - when ts is compiled down to js , you get type checking If there is an error the conversion to js fails
+  - Onec ts is compiled down to js then it can be run anywhere node or Browser
+
+npm install -g typescript
+npm init -y
+npm tsc --init
+
+after writing ts code we have to compiled it to js byt ( tsc -b ) 
+then you have a js file with same code concept do not need about what code write in js file
+
+
+-> rootDir and outDir are nothing but better folder structure
+we are creating two folder src and dist(distribution or build) inside src we creating ts files and in dist folder compiled js file are present
+we have to change directory in tsconfig.json file
+// ye karne ka fayda ye hai ki we can include dist folder in gitignore
